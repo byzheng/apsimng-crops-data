@@ -2,7 +2,6 @@ rm(list = ls())
 
 rerun <- TRUE # whether to rerun apsimx simulations
 target_crops <- c("Barley", "Wheat", "Canola") # list of crops to process
-target_crops <- "Wheat" 
 APSIMX_DIR <- Sys.getenv("APSIMX_DIR")
 
 crop_output_dir <- "_outputs" # Directory to store cached data
