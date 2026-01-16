@@ -34,4 +34,8 @@ for (i in seq(along = crops[[1]])) {
         dplyr::mutate(Genotype = tolower(Genotype))
     obs_file <- file.path(crop_output_dir, paste0(crop, ".Rds"))
     saveRDS(all_reports, obs_file)
+
+    exp_info <- get_experiments(files$file)
+    exp_info_file <- file.path(crop_output_dir, paste0(crop, "_experiments.Rds"))
+    saveRDS(exp_info, exp_info_file)
 }
