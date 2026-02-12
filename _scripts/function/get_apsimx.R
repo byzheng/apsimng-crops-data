@@ -11,7 +11,8 @@ get_apsimx <- function(crops) {
     i <- 1
     for (i in seq(along = crops)) {
         crop <- crops[i]
-        crop_dir <- file.path(base_folder, sprintf("Tests/Validation/%s/", crop))
+        crop_dirs <- c(file.path(base_folder, sprintf("Tests/Validation/%s/", crop)),
+                    file.path(base_folder, sprintf("Prototypes/%s/", crop)))
         files <- list.files(crop_dir, "\\.apsimx$", full.names = TRUE, recursive = TRUE)
 
         if (length(files) == 0) {

@@ -1,1 +1,0 @@
-DBI::dbReadTable(con, x) 
