@@ -13,10 +13,10 @@ get_apsimx <- function(crops) {
         crop <- crops[i]
         crop_dirs <- c(file.path(base_folder, sprintf("Tests/Validation/%s/", crop)),
                     file.path(base_folder, sprintf("Prototypes/%s/", crop)))
-        files <- list.files(crop_dir, "\\.apsimx$", full.names = TRUE, recursive = TRUE)
+        files <- list.files(crop_dirs, "\\.apsimx$", full.names = TRUE, recursive = TRUE)
 
         if (length(files) == 0) {
-            warning(sprintf("No .apsimx files found for crop %s in %s", crop, crop_dir))
+            warning(sprintf("No .apsimx files found for crop %s in %s", crop, paste(crop_dirs, collapse = ", ")))
             next
         }
         all_files[[i]] <- tibble::tibble(

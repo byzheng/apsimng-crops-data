@@ -1,7 +1,7 @@
 rm(list = ls())
 
 rerun <- TRUE # whether to rerun apsimx simulations
-target_crops <- c("Barley", "Wheat", "Canola", "Chickpea") # list of crops to process
+target_crops <- c("Barley", "Wheat", "Canola", "Chickpea", "Lentil") # list of crops to process
 APSIMX_DIR <- Sys.getenv("APSIMX_DIR")
 
 crop_output_dir <- "_outputs" # Directory to store cached data
@@ -16,11 +16,12 @@ if (!dir.exists(crop_output_dir)) {
 }
 # list all crops and only keep target crops
 models <- list.files(file.path(APSIMX_DIR, "Models/Resources/"), "*.json", full.names = TRUE)
-crops <- tibble::tibble(Model = models) |> 
+prototypes <- list.files(file.path(APSIMX_DIR, "Prototypes/"), "*.apsimx", full.names = TRUE, recursive = TRUE)
+crops <- tibble::tibble(Model = c(models, prototypes)) |> 
     dplyr::mutate(Crop = tools::file_path_sans_ext(basename(Model)))
 crops <- crops |> 
     dplyr::filter(Crop %in% target_crops)
-i <- 1
+i <- 5
 for (i in seq(along = crops[[1]])) {
     crop <- crops$Crop[i]
     # List all apsimx files
